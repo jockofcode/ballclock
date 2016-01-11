@@ -35,6 +35,38 @@ func main() {
 		}
 	}
 	/* End Test Adding Fifth Ball */
+
+	/* Test Adding Sixtieth Ball */
+	{
+		bc := NewBallClock(27)
+		for i := 0; i < 60; i += 1 {
+			bc.cycle_next_ball()
+		}
+		json_string := bc.to_json()
+		expected_json := "{\"Min\":[],\"FiveMin\":[],\"Hour\":[24],\"Main\":[16,17,18,4,3,21,22,9,8,7,26,14,13,12,11,1,27,23,19,6,2,25,20,15,10,5]}"
+		if json_string == expected_json {
+			fmt.Println("Success at Test Adding Sixtieth Ball:")
+		} else {
+			fmt.Printf("Failed at Test Adding Sixtieth Ball\n\tResult:  %v\n\tExpected: %v\n\n", json_string, expected_json)
+		}
+	}
+	/* End Test Adding Sixtieth Ball */
+
+	/* Test Adding Seven Hundred Twentieth Ball */
+	{
+		bc := NewBallClock(27)
+		for i := 0; i < 720; i += 1 {
+			bc.cycle_next_ball()
+		}
+		json_string := bc.to_json()
+		expected_json := "{\"Min\":[],\"FiveMin\":[],\"Hour\":[],\"Main\":[3,26,13,2,21,16,8,14,6,18,5,12,10,11,9,4,23,19,25,1,27,22,17,7,15,24,20]}"
+		if json_string == expected_json {
+			fmt.Println("Success at Test Adding Seven Hundred Twentieth Ball:")
+		} else {
+			fmt.Printf("Failed at Test Adding Seven Hundred Twentieth Ball\n\tResult:  %v\n\tExpected: %v\n\n", json_string, expected_json)
+		}
+	}
+	/* End Test Adding Seven Hundred Twentieth  Ball */
 }
 
 type Ball int
@@ -63,10 +95,16 @@ func NewBallClock(ball_count int) (ball_clock BallClock) {
 func (bc *BallClock) cycle_next_ball() {
 	next_ball := (*bc).Main.get_ball_from_front()
 
-	next_ball, add_to_next_tray := (*bc).Min.add_ball(next_ball, &((*bc).Main))
+	next_ball, add_to_five_min_tray := (*bc).Min.add_ball(next_ball, &((*bc).Main))
 
-	if add_to_next_tray {
-		next_ball, _ /*add_to_next_day*/ = (*bc).FiveMin.add_ball(next_ball, &((*bc).Main))
+	if add_to_five_min_tray {
+		next_ball, add_to_hour_tray := (*bc).FiveMin.add_ball(next_ball, &((*bc).Main))
+		if add_to_hour_tray {
+			next_ball, add_to_main_tray := (*bc).Hour.add_ball(next_ball, &((*bc).Main))
+			if add_to_main_tray {
+				(*bc).Main.add_ball(next_ball, &((*bc).Main))
+			}
+		}
 	}
 }
 
