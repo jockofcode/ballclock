@@ -6,6 +6,10 @@ import (
 )
 
 func main() {
+
+}
+
+func test() {
 	/* Test Adding One Ball */
 	{
 		bc := NewBallClock(27)
