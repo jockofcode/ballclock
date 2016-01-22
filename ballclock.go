@@ -1,15 +1,11 @@
-package main
+package ballclock
 
 import (
 	"encoding/json"
 	"fmt"
 )
 
-func main() {
-	test()
-}
-
-func test() {
+func Test() {
 	/* Test Adding One Ball */
 	{
 		bc := NewBallClock(27)
