@@ -21,7 +21,7 @@ func NewBallClock(ball_count int) (ball_clock BallClock) {
 	ball_clock.Hour = make([]Ball, 0, 11)
 	ball_clock.Main = make([]Ball, 0, ball_count)
 
-	for i := 1; i <= ball_count; i += 1 {
+	for i := 1; i <= cap(ball_clock.Main); i += 1 {
 		ball_clock.Main.addBall(Ball(i), &(ball_clock.Main))
 	}
 	return
