@@ -12,17 +12,17 @@ Unfortunately, most commercially available ball clocks do not incorporate a date
 
 
 
-###Operation of the Ball Clock
+### Operation of the Ball Clock
 Every minute, the least recently used ball is removed from the queue of balls at the bottom of the clock, elevated, then deposited on the minute indicator track, which is able to hold four balls. When a fifth ball rolls on to the minute indicator track, its weight causes the track to tilt. The four balls already on the track run back down to join the queue of balls waiting at the bottom in reverse order of their original addition to the minutes track. The fifth ball, which caused the tilt, rolls on down to the five-minute indicator track. This track holds eleven balls. The twelfth ball carried over from the minutes causes the five-minute track to tilt, returning the eleven balls to the queue, again in reverse order of their addition. The twelfth ball rolls down to the hour indicator. The hour indicator also holds eleven balls, but has one extra fixed ball which is always present so that counting the balls in the hour indicator will yield an hour in the range one to twelve. The twelfth ball carried over from the five-minute indicator causes the hour indicator to tilt, returning the eleven free balls to the queue, in reverse order, before the twelfth ball itself also returns to the queue.
 
 
-###Guidelines
+### Guidelines
 
 The exercise should be completed in Golang. You’re welcome to do it in multiple languages to show appitude, but we would like to see the test in Go.
 
 No permutation or LCM algorithms are allowed.  A full simulation is required. Please ensure that your code moves each ball.
 
-###Implementation
+### Implementation
 
 Valid numbers are in the range 27 to 127.
 
